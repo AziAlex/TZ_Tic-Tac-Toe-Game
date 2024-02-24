@@ -3,13 +3,21 @@
 body {
   background-color: #171717;
   color: $white-200;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
 }
 
 .App {
+  height: 100%;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding-inline: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 h2 {

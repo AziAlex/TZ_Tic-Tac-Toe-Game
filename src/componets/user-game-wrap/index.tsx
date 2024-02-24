@@ -3,6 +3,7 @@ import {Board} from "../board";
 import {observer} from "mobx-react";
 import TicTacToeState from "../../store/tikTacToeStore";
 import {GameStatus, Player} from "../../store/type";
+import {Chat} from "../chat";
 
 import styles from './styles.module.scss';
 
@@ -45,6 +46,7 @@ export class UserGameWrap extends Component<Props> {
       <div className={styles.gameWrap}>
         <h2 className={styles.title}>{this.getStatusTitle(gameStatus, turn)}</h2>
         <Board user={this.props.user}/>
+        <Chat user={this.props.user}/>
       </div>
     );
   }

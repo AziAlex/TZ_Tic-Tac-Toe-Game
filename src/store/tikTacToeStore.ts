@@ -10,6 +10,7 @@ class TicTacToeStore {
       o: 0,
     },
     gameStatus: 'started',
+    messages: []
   }
 
 
@@ -45,6 +46,15 @@ class TicTacToeStore {
       x: 0,
       o: 0,
     };
+    this.state.messages = [];
+  }
+
+  sendMessage = (message: string, player: Player) => {
+    this.state.messages.push({
+      player,
+      message,
+      date: new Date(),
+    })
   }
 
   private checkWinner(): Player | null {

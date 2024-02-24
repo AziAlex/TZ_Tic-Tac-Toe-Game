@@ -1,0 +1,143 @@
+@import "../../app/styles/variables";
+
+.chatWrapper {
+  flex: 1;
+  margin-top: 40px;
+  border-radius: 8px;
+  border: 1px solid $gray-400;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    background-color: $gray-800;
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid $gray-400;
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-right: 12px;
+      border-radius: 50%;
+      background-color: $gray-600;
+
+      [data-player='player-x'],
+      [data-player='player-o'] {
+        width: 60%;
+        height: 60%;
+        position: relative;
+      }
+
+      [data-player='player-x'] {
+        transform: translate(8px);
+      }
+
+      [data-player='player-x']:before,
+      [data-player='player-x']:after,
+      [data-player='player-o']:before {
+        content: '';
+        position: absolute;
+      }
+
+      [data-player='player-x']:before,
+      [data-player='player-x']:after {
+        width: 3px;
+        height: 100%;
+        background-color: $orange;
+      }
+
+      [data-player='player-x']:before {
+        transform: rotate(45deg);
+      }
+
+      [data-player='player-x']:after {
+        transform: rotate(-45deg);
+      }
+
+      [data-player='player-o']:before {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 3px solid $orange;
+      }
+    }
+  }
+
+  .chat {
+    padding: 0 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .chatList {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 12px;
+      padding-right: 4px;
+      overflow-y: auto;
+      max-height: 300px;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+
+      .message {
+        padding: 8px 16px 22px;
+        border-radius: 8px;
+        width: fit-content;
+        min-width: 120px;
+        position: relative;
+
+        p {
+          padding-right: 40px;
+        }
+
+        &.player-x {
+          background-color: $gray-400;
+        }
+
+        &.player-o {
+          margin-left: auto;
+          background-color: $green;
+        }
+
+        .time {
+          position: absolute;
+          right: 16px;
+          bottom: 8px;
+          padding-top: 6px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .inputForm {
+      border-radius: 8px;
+      border: 1px solid $gray-400;
+      padding: 12px;
+      height: 60px;
+      margin-top: 12px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+
+      .input {
+        flex: 1;
+        background-color: transparent;
+        resize: vertical;
+        color: #fff;
+        height: 100%;
+        font-size: 18px;
+      }
+    }
+  }
+}
