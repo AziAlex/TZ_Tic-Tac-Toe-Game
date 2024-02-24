@@ -1,0 +1,45 @@
+@import '../../app/styles/variables';
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid $stroke;
+  color: $white-200;
+
+  .player {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .scoreContainer {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+
+    .score {
+      margin: 0;
+      font-size: 22px;
+
+      span {
+        margin: 0 5px;
+        font-weight: bold;
+      }
+    }
+
+    .resetButton {
+      margin-left: 20px;
+      padding: 5px 10px;
+      font-size: 14px;
+      border-radius: 4px;
+      background-color: $green;
+      color: $white-200;
+
+      &:hover {
+        background-color: $green-600;
+      }
+    }
+  }
+}
