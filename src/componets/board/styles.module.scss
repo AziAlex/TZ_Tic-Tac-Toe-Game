@@ -1,0 +1,66 @@
+@import "../../app/styles/variables";
+
+.board {
+  width: fit-content;
+  margin: 0 auto;
+  display: grid;
+  border-radius: 4px;
+  padding: 12px;
+  background-color: $gray-600;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  .cell {
+    width: 80px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  [data-player='player-x']:before,
+  [data-player='player-x']:after,
+  [data-player='player-o']:before {
+    content: '';
+    position: absolute;
+  }
+
+  [data-player='player-x']:before,
+  [data-player='player-x']:after {
+    width: 8px;
+    height: 60%;
+    background-color: $orange;
+  }
+
+  [data-player='player-x']:before {
+    transform: rotate(45deg);
+  }
+
+  [data-player='player-x']:after {
+    transform: rotate(-45deg);
+  }
+
+  [data-player='player-o']:before {
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    border: 8px solid $orange;
+  }
+
+  .cell:nth-child(4),
+  .cell:nth-child(5),
+  .cell:nth-child(6) {
+    border-top: 1px solid $gray-400;
+    border-bottom: 1px solid $gray-400;
+  }
+
+  .cell:nth-child(2),
+  .cell:nth-child(5),
+  .cell:nth-child(8) {
+    border-left: 1px solid $gray-400;
+    border-right: 1px solid $gray-400;
+  }
+}

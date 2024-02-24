@@ -1,0 +1,15 @@
+@import "../../app/styles/variables";
+
+.gameWrap {
+  padding: 40px 0;
+
+  &:nth-child(1){
+    border-right: 1px solid $gray-400;
+  }
+
+  .title {
+    text-align: center;
+    color: $orange;
+    margin-bottom: 40px;
+  }
+}
