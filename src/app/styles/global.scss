@@ -1,5 +1,8 @@
+@import '../styles/variables';
+
 body {
   background-color: #171717;
+  color: $white-200;
 }
 
 .App {
@@ -7,4 +10,8 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding-inline: 20px;
+}
+
+h2 {
+  font-size: 22px;
 }
