@@ -75,13 +75,9 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
 
     .chatList {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 12px;
       padding-right: 4px;
       overflow-y: auto;
       max-height: 300px;
@@ -94,6 +90,10 @@
         width: fit-content;
         min-width: 120px;
         position: relative;
+
+        &:not(:last-child) {
+          margin-bottom: 12px;
+        }
 
         p {
           padding-right: 40px;

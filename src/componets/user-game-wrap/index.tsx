@@ -33,7 +33,7 @@ export class UserGameWrap extends Component<Props> {
   componentDidUpdate() {
     const {gameStatus} = TicTacToeState.state
 
-    if (gameStatus === 'ended') {
+    if (gameStatus === 'ended' || gameStatus === 'draw') {
       setTimeout(() => {
         TicTacToeState.nextGame()
       }, 5000)

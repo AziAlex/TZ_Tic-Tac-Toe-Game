@@ -1,5 +1,6 @@
 import {makeAutoObservable} from "mobx";
 import type {GameState, Player} from "./type";
+import {isNull} from "util";
 
 class TicTacToeStore {
   state: GameState = {
@@ -9,6 +10,7 @@ class TicTacToeStore {
       x: 0,
       o: 0,
     },
+    winConditions: null,
     gameStatus: 'started',
     messages: []
   }
@@ -27,7 +29,8 @@ class TicTacToeStore {
 
     if (winner) {
       this.state.gameStatus = 'ended';
-      this.state.score[winner] += 1;
+      this.state.score[winner.user] += 1;
+      this.state.winConditions = winner.winConditions
     } else {
       this.state.turn = this.state.turn === 'x' ? 'o' : 'x';
     }
@@ -35,8 +38,9 @@ class TicTacToeStore {
 
 
   nextGame = () => {
-    this.state.turn = 'x';
+    this.state.turn = this.getFirstTurnPlayer();
     this.state.moves = Array(9).fill(null);
+    this.state.winConditions = null;
     this.state.gameStatus = 'started';
   }
 
@@ -57,7 +61,7 @@ class TicTacToeStore {
     })
   }
 
-  private checkWinner(): Player | null {
+  private checkWinner(): null | { user: Player, winConditions: number[] } {
     const {moves} = this.state;
     const winConditions = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -67,13 +71,15 @@ class TicTacToeStore {
 
     for (const condition of winConditions) {
       const [a, b, c] = condition;
-      if (moves[a] && moves[a] === moves[b] && moves[a] === moves[c]) {
-        return moves[a]
+      if (moves[a] && (moves[a] === moves[b]) && (moves[a] === moves[c])) {
+        return {user: moves[a] as Player, winConditions: condition};
       }
     }
 
     if (moves.every(move => move !== null)) {
       this.state.gameStatus = 'draw';
+      this.state.score.x += 1;
+      this.state.score.o += 1;
       return null; // Ничья
     }
 
@@ -81,6 +87,17 @@ class TicTacToeStore {
       this.state.gameStatus = 'active';
     }
     return null; // Игра продолжается
+  }
+
+  private getFirstTurnPlayer(): Player {
+    const movesList = this.state.moves.filter(move => move !== null);
+    const isEvenMoves = movesList.length % 2 === 0;
+
+    // Определяем, кто первый начал ходить
+    if (isEvenMoves) {
+      return this.state.turn === "x" ? "o" : "x";
+    }
+    return this.state.turn === "x" ? "x" : "o";
   }
 }
 

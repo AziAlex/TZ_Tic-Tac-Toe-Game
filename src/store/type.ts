@@ -9,8 +9,9 @@ export interface Message {
 
 export interface GameState {
   turn: Player;
-  moves: (Player | null)[]; // Изменение типа для массива moves
+  moves: (Player | null)[];
   score: { [key in Player]: number };
   gameStatus: GameStatus;
   messages: Message[];
+  winConditions: number[] | null;
 }

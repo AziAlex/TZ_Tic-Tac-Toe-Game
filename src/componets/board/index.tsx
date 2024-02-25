@@ -1,9 +1,11 @@
 import {Component} from "react";
 import {observer} from "mobx-react";
 import TicTacToeState from "../../store/tikTacToeStore";
+import {Player} from "../../store/type";
+
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import {Player} from "../../store/type";
+import {getWinLineType} from "../lib/utils";
 
 interface Props {
   user: Player
@@ -17,13 +19,14 @@ export class Board extends Component<Props> {
 
   render() {
     const {state, makeMove} = TicTacToeState;
+    const {winConditions} = state
 
     return (
-      <ul className={styles.board}>
+      <ul className={clsx(styles.board, winConditions && styles[getWinLineType(winConditions)])}>
         {state.moves.map((move, index) => (
           <li
             key={index}
-            className={clsx(styles.cell)}
+            className={styles.cell}
             data-player={move && `player-${move}`}
             onClick={() => this.props.user === state.turn && makeMove(index)}
           >
