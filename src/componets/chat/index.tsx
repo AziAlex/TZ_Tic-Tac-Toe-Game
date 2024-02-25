@@ -1,11 +1,11 @@
 import {Component, createRef, RefObject} from "react";
 import {observer} from "mobx-react";
-
-import {Player} from "../../store/type";
-import TicTacToeState from "../../store/tikTacToeStore";
-import {formatDate} from "../lib/utils";
-import IconSend from "../asets/svg/IconSend.svg";
 import clsx from "clsx";
+
+import IconSend from "../asets/svg/IconSend.svg";
+import type {Player} from "../../store/type";
+import {formatDate} from "../../lib/utils";
+import TicTacToeState from "../../store/tikTacToeStore";
 
 import styles from "./styles.module.scss"
 
@@ -21,7 +21,7 @@ interface State {
 @observer
 export class Chat extends Component<Props, State> {
   state: State = {message: ""}
-  private chatListRef: RefObject<HTMLUListElement>;
+  chatListRef: RefObject<HTMLUListElement>;
 
   constructor(props: Props) {
     super(props);
@@ -72,6 +72,7 @@ export class Chat extends Component<Props, State> {
               value={this.state.message}
               placeholder="Enter your message"
               onChange={(e) => this.setState({message: e.target.value})}
+              onKeyPress={(e) => e.key === "Enter" && this.onSendMessage()}
             />
             <button
               className={styles.sendButton}

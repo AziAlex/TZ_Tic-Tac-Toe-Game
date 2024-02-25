@@ -1,7 +1,9 @@
-import {observer} from "mobx-react";
 import {Component} from "react";
-import styles from './styles.module.scss';
+import {observer} from "mobx-react";
+
 import TicTacToeState from "../../store/tikTacToeStore";
+
+import styles from './styles.module.scss';
 
 @observer
 export class Header extends Component {

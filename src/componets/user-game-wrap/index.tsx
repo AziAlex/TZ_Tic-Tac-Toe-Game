@@ -1,10 +1,10 @@
 import {Component} from "react";
-import {Board} from "../board";
 import {observer} from "mobx-react";
-import {Chat} from "../chat";
-import TicTacToeState from "../../store/tikTacToeStore";
+
+import {Chat, Board} from "../index";
 import IconChat from "../asets/svg/IconChat.svg";
 import type {GameStatus, Player} from "../../store/type";
+import TicTacToeState from "../../store/tikTacToeStore";
 
 import styles from './styles.module.scss';
 

@@ -1,11 +1,12 @@
 import {Component} from "react";
 import {observer} from "mobx-react";
+import clsx from "clsx";
+
+import type {Player} from "../../store/type";
+import {getWinLineType} from "../../lib/utils";
 import TicTacToeState from "../../store/tikTacToeStore";
-import {Player} from "../../store/type";
 
 import styles from "./styles.module.scss";
-import clsx from "clsx";
-import {getWinLineType} from "../lib/utils";
 
 interface Props {
   user: Player

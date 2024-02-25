@@ -4,7 +4,7 @@ import {isNull} from "util";
 
 class TicTacToeStore {
   state: GameState = {
-    turn: 'x',
+    turn: 'x', // Очередь текущего игрока ('x' или 'o')
     moves: Array(9).fill(null),
     score: {
       x: 0,
@@ -21,10 +21,13 @@ class TicTacToeStore {
   }
 
   makeMove = (index: number) => {
+    // Если ячейка уже занята или игра завершена, выходим из метода
     if (this.state.moves[index] || this.state.gameStatus === 'ended') return
 
+    // Устанавливаем значение текущего игрока в выбранную ячейку
     this.state.moves[index] = this.state.turn;
 
+    // Если есть победитель, обновляем состояние игры
     const winner = this.checkWinner();
 
     if (winner) {
@@ -71,6 +74,7 @@ class TicTacToeStore {
 
     for (const condition of winConditions) {
       const [a, b, c] = condition;
+      // Если все три ячейки в выигрышной комбинации заняты одним игроком, возвращаем победителя + комбинацию
       if (moves[a] && (moves[a] === moves[b]) && (moves[a] === moves[c])) {
         return {user: moves[a] as Player, winConditions: condition};
       }
@@ -89,11 +93,11 @@ class TicTacToeStore {
     return null; // Игра продолжается
   }
 
+  // Определяем, кто первый начал ходить
   private getFirstTurnPlayer(): Player {
     const movesList = this.state.moves.filter(move => move !== null);
     const isEvenMoves = movesList.length % 2 === 0;
 
-    // Определяем, кто первый начал ходить
     if (isEvenMoves) {
       return this.state.turn === "x" ? "o" : "x";
     }

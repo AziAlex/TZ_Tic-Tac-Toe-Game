@@ -1,9 +1,10 @@
 import {Component} from "react";
-import {Header} from "../header";
-import {UserGameWrap} from "../user-game-wrap";
+
+import {Header, UserGameWrap} from "../index";
+
 import styles from "./style.module.scss";
 
-class Game extends Component {
+export class Game extends Component {
   render() {
     return (
       <>
@@ -16,5 +17,3 @@ class Game extends Component {
     );
   }
 }
-
-export default Game;
