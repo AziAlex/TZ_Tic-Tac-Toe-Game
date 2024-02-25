@@ -31,7 +31,7 @@ To run the game, you'll need [Node.js](https://nodejs.org/) version 12 or higher
 After successfully installing dependencies, start the application locally with the following command:
 
 ```bash
-npm start
+npm run start
 ```
 
 Once started, open your browser and go to [http://localhost:3000](http://localhost:3000) to start playing Tic-Tac-Toe!
