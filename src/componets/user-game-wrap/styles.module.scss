@@ -4,14 +4,32 @@
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
+  position: relative;
 
-  &:nth-child(1){
+  &:nth-child(1) {
     border-right: 1px solid $gray-400;
+
+    @media (max-width: 820px) {
+      border-right: none;
+      border-bottom: 1px solid $gray-400;
+    }
   }
 
   .title {
     text-align: center;
     color: $orange;
     margin-bottom: 40px;
+  }
+
+  .chatBurger {
+    z-index: 1000;
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 40px;
+
+    @media (max-width: 820px) {
+      display: block;
+    }
   }
 }

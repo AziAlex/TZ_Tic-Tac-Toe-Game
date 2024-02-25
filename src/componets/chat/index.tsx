@@ -1,14 +1,17 @@
 import {Component, createRef, RefObject} from "react";
-import {Player} from "../../store/type";
-import styles from "./styles.module.scss"
-import IconSend from "../asets/svg/IconSend.svg";
 import {observer} from "mobx-react";
+
+import {Player} from "../../store/type";
 import TicTacToeState from "../../store/tikTacToeStore";
-import {formatDate} from "../lib/utils/date.util";
+import {formatDate} from "../lib/utils";
+import IconSend from "../asets/svg/IconSend.svg";
 import clsx from "clsx";
+
+import styles from "./styles.module.scss"
 
 interface Props {
   user: Player
+  chatActive: boolean
 }
 
 interface State {
@@ -17,9 +20,7 @@ interface State {
 
 @observer
 export class Chat extends Component<Props, State> {
-  state: State = {
-    message: ""
-  }
+  state: State = {message: ""}
   private chatListRef: RefObject<HTMLUListElement>;
 
   constructor(props: Props) {
@@ -28,6 +29,7 @@ export class Chat extends Component<Props, State> {
   }
 
   onSendMessage = () => {
+    if (!this.state.message) return
     TicTacToeState.sendMessage(this.state.message, this.props.user)
     this.setState({message: ""})
   }
@@ -45,7 +47,7 @@ export class Chat extends Component<Props, State> {
     const {state} = TicTacToeState
 
     return (
-      <div className={styles.chatWrapper}>
+      <div className={clsx(styles.chatWrapper, {[styles.chatWrapperActive]: this.props.chatActive})}>
         <header className={styles.header}>
           <div className={styles.avatar}>
             <div data-player={`player-${this.props.user === "x" ? "x" : "o"}`}></div>

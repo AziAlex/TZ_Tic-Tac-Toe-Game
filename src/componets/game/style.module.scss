@@ -3,3 +3,9 @@
   grid-template-columns: 1fr 1fr;
   flex: 1;
 }
+
+@media (max-width: 820px) {
+  .game {
+    grid-template-columns: 1fr;
+  }
+}
